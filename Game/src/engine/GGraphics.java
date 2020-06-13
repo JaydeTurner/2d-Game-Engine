@@ -88,7 +88,10 @@ public class GGraphics extends Canvas {
 		bs.show();// This needs to be on the last item or we get flashing. Only need to show the lot once.
 
 	}
-
+	// In order to show highlighted menu selection, border will change to blue.
+	public void menuSelect(Graphics g) {
+		g.setColor(Color.BLUE);
+	}
 	public long getFps() {
 		return this.fps;
 	}
