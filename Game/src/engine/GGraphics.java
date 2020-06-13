@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -20,10 +21,14 @@ public class GGraphics extends Canvas {
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	public static final String NAME = "Game Name :D :D :D";
-	public static final int WIDTH = 720;
+	public static final int WIDTH = 1280;
 	public static final int HEIGHT = WIDTH / 16 * 9;
 	public static final int SCALE = 1;
 	public long fps = 0;
+	
+	
+	Font menuFont = new Font ("Prestige Elite Std", 1, 48);
+
 	
 	public GGraphics() {
 
@@ -45,7 +50,7 @@ public class GGraphics extends Canvas {
 		frame.setVisible(true);
 	}
 
-	public void render() {
+	public void renderMenu() {
 
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
@@ -53,14 +58,34 @@ public class GGraphics extends Canvas {
 			return;
 		}
 
-		Graphics g = bs.getDrawGraphics(); // Creates our graphics object that will fill the screen
-
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.drawLine(100, 100, 20, 20);
-		g.dispose();
-		bs.show();
+	
+		
+		//initialise graphics object for border
+		Graphics gRedBorder = bs.getDrawGraphics(); // Creates our graphics object that will fill the screen
+		//Set up border
+		gRedBorder.setColor(Color.RED);
+		gRedBorder.fillRect(0, 0, getWidth(), getHeight());
+		gRedBorder.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		gRedBorder.drawLine(20, 20, 1260, 20);
+		gRedBorder.drawLine(20, 700, 20, 20);
+		gRedBorder.drawLine(1260, 20, 1260, 700);
+		gRedBorder.drawLine(1260, 700, 20, 700);
+		gRedBorder.dispose();
+		
+		
+		//Drawing our games title
+		Graphics gTitle = bs.getDrawGraphics();
+		gTitle.setFont(menuFont);
+		gTitle.drawString("Jayde's totes hot legit game 4 real ", 120, 120);
+		gTitle.dispose();
+		
+		// Box surrounding title
+		Graphics gTitlebox = bs.getDrawGraphics();
+		gTitlebox.setColor(Color.RED);
+		gTitlebox.drawRect(80, 60, 1090, 100);
+		
+		
+		bs.show();// This needs to be on the last item or we get flashing. Only need to show the lot once.
 
 	}
 

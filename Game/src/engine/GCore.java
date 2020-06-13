@@ -45,7 +45,7 @@ public class GCore implements Runnable {
 
 				frames++;
 				//render();
-				curGraphics.render();
+				curGraphics.renderMenu();
 				
 				
 			}
